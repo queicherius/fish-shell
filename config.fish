@@ -101,6 +101,17 @@ function recursive_rimraf_node_modules
   end
 end
 
+# Auto-upgrade all dependencies to their newest versions
+function yarn_upgrade_deps
+  git_cleanup
+  git branch -D update-dependencies &>/dev/null
+  git checkout -b update-dependencies
+  yarn upgrade
+  git add package.json yarn.lock
+  git commit -m "Update dependencies"
+  git push --set-upstream --force origin update-dependencies
+end
+
 # Export the NPM token for the Github registry to an environment variable
 export NPM_TOKEN=(cat ~/.npmrc | grep npm.pkg.github.com/:_authToken | awk '{split($0,a,"="); print a[2]}')
 
