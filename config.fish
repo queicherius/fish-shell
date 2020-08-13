@@ -79,9 +79,9 @@ function really_use_npm
   command npm $argv
 end
 
-# Skip git cleanup for `np` and force `yarn` usage
+# Make `np` behave like you'd expect (don't delete dependencies, use yarn, don't enable 2fa)
 function np
-  command np $argv --no-cleanup --yarn
+  command np $argv --no-cleanup --yarn --no-2fa
 end
 
 # Rebuild `node_modules` via `yarn`
@@ -106,7 +106,7 @@ function yarn_upgrade_deps
   git_cleanup
   git branch -D update-dependencies &>/dev/null
   git checkout -b update-dependencies
-  yarn upgrade
+  yarn upgrade --latest
   git add package.json yarn.lock
   git commit -m "Update dependencies"
   git push --set-upstream --force origin update-dependencies
