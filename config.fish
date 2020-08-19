@@ -123,7 +123,12 @@ function git_cleanup
   git checkout master
   git pull
   git fetch --prune
+
+  # Delete merged branches
   git branch --merged | grep  -v '\*\|master' | xargs -r -n 1 git branch -d
+
+  # Delete squash-merged branches
+  git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch\^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done
 end
 
 # Show what I did in a repository recently
