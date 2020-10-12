@@ -123,6 +123,7 @@ function git_cleanup
   git checkout master
   git pull
   git fetch --prune
+  git fetch --tags -f
 
   # Delete merged branches
   git branch --merged | grep  -v '\*\|master' | xargs -r -n 1 git branch -d
@@ -157,6 +158,7 @@ function git_masterize
   git checkout "$ORIGIN"
   git pull
   git fetch --prune
+  git fetch --tags -f
   git reset --hard HEAD
 
   echo "git_masterize: checkout"
