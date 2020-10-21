@@ -113,8 +113,8 @@ function yarn_upgrade_deps
 end
 
 # Export the NPM token for the Github registry to an environment variable
-export NPM_TOKEN=(cat ~/.npmrc | grep npm.pkg.github.com/:_authToken | awk '{split($0,a,"="); print a[2]}')
 export DEVOXA_GITHUB_REGISTRY_TOKEN=(cat ~/.config/DEVOXA_GITHUB_REGISTRY_TOKEN)
+export NPM_TOKEN=(cat ~/.config/DEVOXA_GITHUB_REGISTRY_TOKEN)
 
 # --- GIT ---------------------------------------------------------------------
 
