@@ -245,3 +245,10 @@ eval (direnv hook fish)
 
 # Get Rust into the path
 source $HOME/.cargo/env
+
+# --- VS CODE ----------------------------------------------------------------
+
+# Fix startup issues for the VS Code server
+function fix_vs_code
+  rm /root/.vscode-server-insiders/bin/*/*-lock*
+end
