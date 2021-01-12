@@ -239,7 +239,7 @@ function docker_sh
 end
 
 # Enable direnv for running .envrc files
-eval (direnv hook fish)
+/root/.cargo/bin/direnv hook fish | source
 
 # --- RUST -------------------------------------------------------------------
 
