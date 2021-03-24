@@ -252,3 +252,8 @@ source $HOME/.cargo/env
 function fix_vs_code
   rm /root/.vscode-server-insiders/bin/*/*-lock*
 end
+
+# --- TZ ----------------------------------------------------------------------
+# https://github.com/oz/tz
+
+export TZ_LIST='Europe/Berlin'
