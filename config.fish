@@ -238,7 +238,7 @@ function docker_sh
 end
 
 # Enable direnv for running .envrc files
-/root/.cargo/bin/direnv hook fish | source
+/usr/local/sbin/direnv hook fish | source
 
 # --- KUBERNETES -------------------------------------------------------------
 
