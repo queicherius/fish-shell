@@ -240,6 +240,16 @@ end
 # Enable direnv for running .envrc files
 /root/.cargo/bin/direnv hook fish | source
 
+# --- KUBERNETES -------------------------------------------------------------
+
+# Export the default kubectl configuration
+export KUBECONFIG=/root/.kube/config
+
+# Less typing = happier me
+function k
+  command kubectl $argv
+end
+
 # --- RUST -------------------------------------------------------------------
 
 # Get Rust into the path
@@ -255,4 +265,4 @@ end
 # --- TZ ----------------------------------------------------------------------
 # https://github.com/oz/tz
 
-export TZ_LIST='Europe/Berlin'
+export TZ_LIST='Europe/London,Europe/Berlin'
