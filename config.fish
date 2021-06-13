@@ -117,8 +117,9 @@ function yarn_upgrade_deps
   git push --set-upstream --force origin update-dependencies
 end
 
-# Export the NPM token for the Github registry to an environment variable
+# Export the NPM tokens for the private registries to the environment variables
 export NPM_TOKEN=(cat ~/.config/GITHUB_ACCESS_TOKEN)
+export NPM_REGISTRY_TOKEN=(cat ~/.config/NPM_REGISTRY_TOKEN)
 
 # --- GIT ---------------------------------------------------------------------
 
