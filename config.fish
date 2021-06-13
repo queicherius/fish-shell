@@ -237,6 +237,17 @@ function docker_sh
   docker exec -it (docker ps | grep $argv[1] | head -1 | cut -c1-12) sh
 end
 
+# Debug the context for docker builds
+function docker_debug_build_context
+  echo "FROM ubuntu
+WORKDIR /build-context
+RUN apt-get update -y && apt-get install -y ncdu
+COPY . /build-context" > ./DebugBuildContext.Dockerfile
+  docker build -f ./DebugBuildContext.Dockerfile -t debug-build-context .
+  rm -f ./DebugBuildContext.Dockerfile
+  docker run --rm -it debug-build-context ncdu
+end
+
 # Enable direnv for running .envrc files
 /usr/local/sbin/direnv hook fish | source
 
