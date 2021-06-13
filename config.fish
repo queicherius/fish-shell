@@ -62,6 +62,11 @@ function ls
   command ls $argv
 end
 
+# Count lines of code
+function cloc
+  command cloc --exclude-dir=node_modules,.idea,.history,coverage,build,dist,out,cdn,static,public,migrations,.codegen --exclude-ext=json .
+end
+
 # Start the shell in the working directory
 cd /projects
 
