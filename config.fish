@@ -125,11 +125,15 @@ export NPM_REGISTRY_TOKEN=(cat ~/.config/NPM_REGISTRY_TOKEN)
 
 # Reset a git repository back to master and remove merged branches
 function git_cleanup
+  set -q argv[1]; or set argv[1] "master"
+  set ORIGIN "$argv[1]"
+
   git reset --hard HEAD
-  git checkout master
+  git checkout "$ORIGIN"
   git pull
   git fetch --prune
   git fetch --tags -f
+  git reset --hard HEAD
 
   # Delete merged branches
   git branch --merged | grep  -v '\*\|master' | xargs -r -n 1 git branch -d
@@ -160,7 +164,6 @@ function git_masterize
 
   echo "git_masterize: cleanup"
   git reset --hard HEAD
-  git clean -fd
   git checkout "$ORIGIN"
   git pull
   git fetch --prune
