@@ -14,6 +14,9 @@ set fish_greeting
 
 # Set prompt format
 function fish_prompt
+  set_color brblack
+  echo -n (TZ=Europe/London date +%R)
+  echo -n ' '
   set_color normal
   echo -n (hostname)
   echo -n ' '
