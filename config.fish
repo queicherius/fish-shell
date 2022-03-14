@@ -78,6 +78,10 @@ cd /projects
 # Setup path for yarn global packages binaries
 set PATH (yarn global bin) $PATH
 
+# Setup volta
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx PATH "$VOLTA_HOME/bin" $PATH
+
 # Supress `npm` usage, because `yarn` is better
 function npm
   echo "`npm` is disabled, try using `yarn` instead."
