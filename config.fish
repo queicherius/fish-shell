@@ -288,3 +288,12 @@ source $HOME/.cargo/env
 function fix_vs_code
   rm /root/.vscode-server-insiders/bin/*/*-lock*
 end
+
+# --- DEVOXA -----------------------------------------------------------------
+
+function i18next_gen
+  jq -s add src/locales/de/*.json > src/locales/de/$argv[1].json
+  yarn codegen:i18next
+  rm src/locales/{en,de}/*_old.json
+  yarn test:i18next
+end
