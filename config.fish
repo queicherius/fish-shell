@@ -249,8 +249,14 @@ function docker_purge
 end
 
 # Open a shell into a docker container by name
-function docker_sh 
-  docker exec -it (docker ps | grep $argv[1] | head -1 | cut -c1-12) sh
+function docker_sh
+  set -q argv[1]; or echo "No container name provided, exiting." && return 1;
+  set NAME "$argv[1]"
+
+  set -q argv[2]; or set argv[2] "sh"
+  set COMMAND "$argv[2]"
+
+  docker exec -it (docker ps | grep $NAME | head -1 | cut -c1-12) sh -c $COMMAND
 end
 
 # Debug the context for docker builds
