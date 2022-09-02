@@ -277,6 +277,14 @@ function k
   command kubectl $argv
 end
 
+# Forward from a local ip address range, e.g. "socat_forward 125.25.25.1"
+function socat_forward
+  set -q argv[1]; or echo "No IP address provided, exiting." && return 1;
+
+  echo "Forwarding from $argv[1]..."
+  socat TCP-LISTEN:443,reuseaddr,fork,su=nobody TCP:$argv[1]:443
+end
+
 # --- RUST -------------------------------------------------------------------
 
 # Get Rust into the path
