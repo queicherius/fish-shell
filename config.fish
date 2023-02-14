@@ -102,8 +102,21 @@ function yarn_nuke
   yarn
 end
 
-# Completely delete all node modules in this folder, and all subfolders
-function recursive_rimraf_node_modules
+# Rebuild `node_module` via `yarn` in this folder and all subfolders
+function yarn_nuke_all
+  set FOLDERS (find . -maxdepth 3 -type f -name "package.json" -not -path '*/node_modules/*' | xargs -n 1 dirname)
+
+  for FOLDER in $FOLDERS
+    echo ">>> $FOLDER"
+    cd $FOLDER
+    rm -rf node_modules/ package-lock.json
+    yarn
+    cd -
+  end
+end
+
+# Completely delete all node modules in this folder and all subfolders
+function node_modules_nuke_all
   echo "This will delete all node_modules in this folder, and all subfolders:"
   find . -name "node_modules" -prune
   echo ""
