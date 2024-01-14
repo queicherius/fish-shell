@@ -165,6 +165,9 @@ function git_cleanup
 
   # Delete squash-merged branches
   bash -c 'git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch\^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done'
+
+  # Everything is fine!
+  return 0
 end
 
 # Show what I did in a repository recently
