@@ -141,6 +141,11 @@ end
 export NPM_TOKEN=(cat ~/.config/GITHUB_ACCESS_TOKEN)
 export NPM_REGISTRY_TOKEN=(cat ~/.config/NPM_REGISTRY_TOKEN)
 
+# Bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
+set -U fish_user_paths /root/.groundcover/bin $fish_user_paths
+
 # --- GIT ---------------------------------------------------------------------
 
 # Reset a git repository back to master and remove merged branches
